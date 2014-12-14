@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<title>Drag & Drop</title>
+
+<!DOCTYPE html>
+ 
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="HandheldFriendly" content="true">
+
+
+<style type="text/css">
+/* Tablet Landscape */
+@media screen and (min-width: 400px){
+  .row
+  {
+    min-width: 80px;
+  }
+}
+
+@media screen and (max-width: 100%) {
+
+#primary { width:60%; }
+
+#secondary { width:25%; margin-left:3%;} 
+
+}
+
+
+/* Tabled Portrait */
+@media screen and (min-width: 400px){
+  .row
+  {
+    min-width: 80px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+#primary { width:100%; }
+
+#secondary { width:100%; margin:0; border:none; }
+
+}
+</style>
+
+
+
+
+
+<style type="text/css">
+#div1, #div2 {
+ float: left;
+ width: 150px;
+ min-height: 135px;
+ margin: 4em;
+ border: 4px solid #12ba3a;
+ padding: .5em;
+}
+.todrag {
+ cursor: pointer;
+}
+.dragging {
+ border: 4px dashed #00e;
+ background: #ff1;
+}
+</style>
+<meta charset="utf-8"/>
+ 
+<meta name="viewport" content="width=device-width"/>
+</head><br><br>
+<body background="11.jpg" width="150" height="150"><center><h1>Dragable Image</h1></center>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+ <img src="happy.jpg" draggable="true" ondragstart="dragStart(event)" id="drag2" class="todrag" width="145" height="130" alt="Drag-and-Drop image" />
+</div>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br style="clear:both" />
+<script type="text/javascript">
+function allowDrop(ev) {
+  ev.preventDefault();    // cancel the ev event
+}
+
+// function called when the drag operation starts
+function dragStart(ev) {
+  // sets the data type and the value of the dragged data
+  // This data will be returned by getData(). Here the ID of current dragged element 
+  ev.dataTransfer.setData('Text', ev.target.id);
+
+  // sets another css class
+  ev.target.className = 'dragging';
+}
+
+// function called when the dragged element is dropped
+function drop(ev) {
+  ev.preventDefault();  // the dragover event needs to be canceled to allow firing the drop event
+
+  // gets data set by setData() for current drag-and-drop operation (the ID of current dragged element),
+  // using for parameter a string with the same format set in setData
+  var drag_data = ev.dataTransfer.getData('Text');
+
+  // adds /appends the dropped element in the drop-target
+  ev.target.appendChild(document.getElementById(drag_data));
+
+  // sets another css class
+  document.getElementById(drag_data).className = 'todrag';
+}
+</script><b>
+<a href="index.html">Click Here To Go To Main Menu</a></b>
+
+</body>
+</html>
